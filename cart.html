@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Cart Items</h1>
+    <table border="1">
+        <tr>
+            <th>Product Code</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+        </tr>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>

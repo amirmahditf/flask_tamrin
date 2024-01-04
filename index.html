@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <!-- اضافه کردن استایل‌ها -->
+    <style>
+        /* استایل‌های شما در این قسمت قرار می‌گیرد */
+        /* ... */
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Action</th>
+        </tr>
+        <!-- اینجا از دیتابیس داده‌ها را می‌گیریم و در تیبل قرار می‌دهیم -->
+        {% for product in products %}
+        <tr>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[2] }}</td>
+            <td>{{ product[3] }}</td>
+            <td class="action-buttons">
+                <!-- دکمه حذف -->
+                <form action="{{ url_for('delete_product', product_id=product[0]) }}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+                <!-- دکمه اضافه کردن به سبد خرید -->
+                <form action="{{ url_for('add_to_cart', product_id=product[0]) }}" method="post">
+                    <input type="submit" value="افزودن به سبد خرید">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- لینک برای اضافه کردن محصول جدید -->
+    <a href="{{ url_for('add_product') }}" class="button">Add Product</a>
+    <!-- لینک برای مشاهده سبد خرید -->
+    <br><br>
+    <a href="{{ url_for('cart') }}" class="button">دیدن سبد خرید</a>
+</body>
+</html>
